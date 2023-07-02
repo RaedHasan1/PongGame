@@ -4,38 +4,36 @@ from paddle import Paddle
 from computer import Computer
 from ball import Ball
 import time
+RED = 1
+BLUE = -1
 
 screen = Screen()
 screen.setup(width=800, height=600)
 screen.bgcolor("black")
 screen.title("Pong")
 screen.tracer(0)
+screen.listen()
 
-startScreen = Turtle()
-user = Paddle()
+paddle = Paddle()
 computer = Computer()
 ball = Ball()
 
-user.position_paddle(350)
-computer.position_paddle(-350)
+screen.onkeypress(paddle.up, "Up")
+screen.onkeypress(paddle.down, "Down")
 
-screen.listen()
-screen.onkeypress(user.up, "Up")
-screen.onkeypress(user.down, "Down")
+start_screen = Turtle()
+start_screen.hideturtle()
+start_screen.penup()
+start_screen.goto(0, 0)
+start_screen.color("white")
+start_screen.write("Press space to start", align="center", font=("david", 24, "normal"))
 
-startScreen.shapesize(0.0000000001)
-startScreen.goto(0, 0)
-startScreen.penup()
-startScreen.color("white")
-startScreen.write("Press space to start", align="center", font=("david", 24, "normal"))
-scoreB = ScoreBoard()
+score_b = ScoreBoard()
 
 
 def game():
 
-    startScreen.clear()
-    startScreen.goto(1000, 1000)
-    screen.update()
+    start_screen.clear()
     game_on = True
     while game_on:
 
@@ -46,7 +44,7 @@ def game():
 
         if ball.ycor() > 280 or ball.ycor() < -280:
             ball.y_bounce()
-        if ball.distance(user) < 60 and ball.xcor() > 320:
+        if ball.distance(paddle) < 60 and ball.xcor() > 320:
             ball.x_move *= -1
             ball.color("red")
         if ball.distance(computer) < 60 and ball.xcor() < -320:
@@ -55,10 +53,10 @@ def game():
 
         if ball.xcor() > 380 or ball.xcor() < -380:
             if ball.xcor() < 0:
-                scoreB.score_update(1)
+                score_b.score_update(RED)
                 ball.color("white")
             if ball.xcor() > 0:
-                scoreB.score_update(-1)
+                score_b.score_update(BLUE)
                 ball.color("white")
             ball.x_bounce()
 
