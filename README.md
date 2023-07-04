@@ -1,4 +1,4 @@
-# PongGame2
+# Pong 
 Pong game with Python
 
 ##
