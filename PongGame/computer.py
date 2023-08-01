@@ -12,14 +12,8 @@ class Computer(Paddle):
         elif self.ycor() <= 0 and ball.ycor() > 0:
             self.goto(self.xcor(), self.ycor() + 10)
         elif self.ycor() > 0 and ball.ycor() > 0:
-            if self.ycor() - ball.ycor() < 0:
-                self.goto(self.xcor(), self.ycor() + 10)
-            else:
-                self.goto(self.xcor(), self.ycor() - 10)
+            self.ycor() - ball.ycor() < 0 ? self.goto(self.xcor(), self.ycor() + 10) : self.goto(self.xcor(), self.ycor() - 10)
         elif self.ycor() < 0 and ball.ycor() < 0:
-            if abs(self.ycor()) - abs(ball.ycor()) < 0:
-                self.goto(self.xcor(), self.ycor() - 10)
-            else:
-                self.goto(self.xcor(), self.ycor() + 10)
+            abs(self.ycor()) - abs(ball.ycor()) < 0 ? self.goto(self.xcor(), self.ycor() - 10) : self.goto(self.xcor(), self.ycor() + 10)
         else:
             pass
