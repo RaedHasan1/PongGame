@@ -30,8 +30,5 @@ class ScoreBoard(Turtle):
 
     def score_update(self, point):
         self.clear()
-        if point == 1:
-            self.score += 1
-        else:
-            self.c_score += 1
+        point == 1 ? self.score +=1 : self.c_score += 1
         self.draw()
