@@ -40,7 +40,7 @@ def game():
         time.sleep(0.1)
         screen.update()
         ball.move_update()
-        computer.computer_moving(ball)
+        computer.move_update(ball)
 
         if ball.ycor() > 280 or ball.ycor() < -280:
             ball.y_bounce()
